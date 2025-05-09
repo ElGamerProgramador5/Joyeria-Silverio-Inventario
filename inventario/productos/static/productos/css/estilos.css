@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000;
+    padding: 2rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+}
+
+.admin-link {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.filtros form {
+    margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.filtros input, .filtros select, .filtros button {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #d4af37;
+    color: #000;
+    border: none;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #fff;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    background-color: #000;
+    color: #fff;
+}
