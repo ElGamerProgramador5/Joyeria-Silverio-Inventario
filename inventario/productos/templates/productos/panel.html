@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Inventario - Joyería Silberio</title>
+    <link rel="stylesheet" href="{% static 'productos/css/estilos.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Panel de Inventario</h1>
+        <a href="/admin/" class="admin-link">Acceso para Administrador</a>
+    </header>
+
+    <section class="filtros">
+        <form method="get">
+            <input type="text" name="q" placeholder="Buscar por nombre..." value="{{ request.GET.q }}">
+            <select name="material">
+                <option value="Todos">Todos los materiales</option>
+                {% for material in materiales %}
+                    <option value="{{ material }}" {% if request.GET.material == material %}selected{% endif %}>{{ material }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Buscar</button>
+        </form>
+    </section>
+
+    <section class="tabla">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Material</th>
+                    <th>Existencias</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.material }}</td>
+                    <td>{{ producto.existencias }}</td>
+                    <td>${{ producto.precio }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No hay productos.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
