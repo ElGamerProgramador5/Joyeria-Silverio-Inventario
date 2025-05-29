@@ -13,41 +13,56 @@
     </header>
 
     <section class="filtros">
-        <form method="get">
-            <input type="text" name="q" placeholder="Buscar por nombre..." value="{{ request.GET.q }}">
-            <select name="material">
-                <option value="Todos">Todos los materiales</option>
-                {% for material in materiales %}
-                    <option value="{{ material }}" {% if request.GET.material == material %}selected{% endif %}>{{ material }}</option>
-                {% endfor %}
-            </select>
-            <button type="submit">Buscar</button>
-        </form>
+    <form method="get">
+    <input type="text" name="id" placeholder="Buscar por ID..." value="{{ request.GET.id }}">
+    <select name="material">
+        <option value="Todos">Todos los materiales</option>
+        {% for material in materiales %}
+            <option value="{{ material }}" {% if request.GET.material == material %}selected{% endif %}>{{ material }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Buscar</button>
+</form>
+
     </section>
 
     <section class="tabla">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Material</th>
-                    <th>Existencias</th>
-                    <th>Precio</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for producto in productos %}
-                <tr>
-                    <td>{{ producto.nombre }}</td>
-                    <td>{{ producto.material }}</td>
-                    <td>{{ producto.existencias }}</td>
-                    <td>${{ producto.precio }}</td>
-                </tr>
-                {% empty %}
-                <tr><td colspan="4">No hay productos.</td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
+    <table>
+  <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Material</th>
+        <th>Existencias</th>
+        <th>Precio Compra</th>
+        <th>Precio Venta</th>
+        <th>Imagen</th>
+    </tr>
+</thead>
+<tbody>
+    {% for producto in productos %}
+    <tr>
+        <td>{{ producto.id }}</td>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.material }}</td>
+        <td>{{ producto.existencias }}</td>
+        <td>${{ producto.precio_compra }}</td>
+        <td>${{ producto.precio_venta }}</td>
+        <td>
+            {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" class="imagen-hover" alt="{{ producto.nombre }}" width="50">
+            {% else %}
+                Sin imagen
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="7">No hay productos.</td></tr>
+    {% endfor %}
+</tbody>
+
+    </table>
+</section>
+
 </body>
 </html>

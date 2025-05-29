@@ -1,3 +1,9 @@
+img {
+    transition: 0.3s ease-in-out;
+    border-radius: 8px;
+}
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
@@ -56,4 +62,13 @@ th, td {
 th {
     background-color: #000;
     color: #fff;
+}
+
+.imagen-hover {
+    transition: transform 0.3s;
+}
+.imagen-hover:hover {
+    transform: scale(2.5);
+    z-index: 10;
+    position: relative;
 }

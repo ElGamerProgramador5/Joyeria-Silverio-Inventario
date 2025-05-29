@@ -1,20 +1,20 @@
 from django.shortcuts import render
-from .models import Producto
+from .models import Producto, Material
 
-def panel_control(request):
+def panel_inventario(request):
     productos = Producto.objects.all()
-    material_filter = request.GET.get('material')
-    query = request.GET.get('q')
+    materiales = Material.objects.values_list('nombre', flat=True)
 
-    if material_filter and material_filter != 'Todos':
-        productos = productos.filter(material__icontains=material_filter)
+    id_query = request.GET.get('id')
+    material_query = request.GET.get('material')
 
-    if query:
-        productos = productos.filter(nombre__icontains=query)
+    if id_query:
+        productos = productos.filter(id=id_query)
 
-    materiales = Producto.objects.values_list('material', flat=True).distinct()
+    if material_query and material_query != 'Todos':
+        productos = productos.filter(material__nombre=material_query)
 
     return render(request, 'productos/panel.html', {
         'productos': productos,
-        'materiales': materiales,
+        'materiales': materiales
     })
