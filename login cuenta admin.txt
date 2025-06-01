@@ -1,0 +1,4 @@
+para entrar al panel de administrador, necesitaras iniciar sesion, aqui la cuenta:
+
+usuario: admin01
+contraseña: admin
